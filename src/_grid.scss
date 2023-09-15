@@ -1,0 +1,62 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid > .col,
+.grid > [class*="col"] {
+  box-sizing: border-box;
+}
+
+.col {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+.col-fixed {
+  flex: 0 0 auto;
+}
+
+$grid-columns: (
+  "col-1": 8.3333%,
+  "col-2": 16.6667%,
+  "col-3": 25%,
+  "col-4": 33.3333%,
+  "col-5": 41.6667%,
+  "col-6": 50%,
+  "col-7": 58.3333%,
+  "col-8": 66.6667%,
+  "col-9": 75%,
+  "col-10": 83.3333%,
+  "col-11": 91.6667%,
+  "col-12": 100%,
+) !default;
+
+@each $col, $width in $grid-columns {
+  .#{$col} {
+    flex: 0 0 auto;
+    width: #{$width};
+  }
+}
+
+@each $key, $val in $breakpoints {
+  @media screen and (min-width: #{$val}) {
+    .#{$key + $separator} {
+      &col {
+        flex-grow: 1;
+        flex-basis: 0;
+      }
+
+      &col-fixed {
+        flex: 0 0 auto;
+      }
+
+      @each $col, $width in $grid-columns {
+        &#{$col} {
+          flex: 0 0 auto;
+          width: #{$width};
+        }
+      }
+    }
+  }
+}

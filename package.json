@@ -1,0 +1,22 @@
+{
+  "name": "hajdui-css",
+  "version": "0.0.0",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "homepage": "",
+  "scripts": {
+    "watch": "gulp watchDev",
+    "build:dev": "gulp buildDev",
+    "build:prod": "gulp buildProd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.67.0"
+  }
+}

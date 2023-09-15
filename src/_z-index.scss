@@ -1,0 +1,29 @@
+$zindex-props: (
+  "z-auto": "auto",
+  "z-0": 0,
+  "z-1": 1,
+  "z-2": 2,
+  "z-3": 3,
+  "z-4": 4,
+  "z-5": 5,
+  "z-100": 100,
+  "z-1000": 1000,
+) !default;
+
+@each $key, $val in $zindex-props {
+  .#{$key} {
+    z-index: $val;
+  }
+}
+
+@each $key, $val in $breakpoints {
+  @media screen and (min-width: #{$val}) {
+    .#{$key + $separator} {
+      @each $name, $idx in $zindex-props {
+        &#{$name} {
+          z-index: $idx;
+        }
+      }
+    }
+  }
+}

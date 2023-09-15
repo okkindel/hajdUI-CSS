@@ -1,0 +1,39 @@
+$primary: #afd9ae !default;
+$background: #f5f5f5 !default;
+$text: #1f1f1f !default;
+$error: #e61919 !default;
+$info: #e6e619 !default;
+
+$colors: (
+  "primary": $primary,
+  "background": $background,
+  "text": $text,
+  "error": $error,
+  "info": $info,
+
+  "blue": #1979e6,
+  "teal": #19e6d4,
+  "red": #e61919,
+  "pink": #fd8cfd,
+  "yellow": #e6e619,
+  "green": #19e619,
+  "orange": #e67f19,
+  "purple": #8c19e6,
+  "brown": #a67f5e,
+  "slategray": #5e7f8c,
+  "gray": #b3b3b3,
+  "black": #000000,
+  "white": #ffffff,
+) !default;
+
+$breakpoints: (
+  "xs": 0,
+  "sm": 480px,
+  "md": 720px,
+  "lg": 960px,
+  "xl": 1200px,
+  "xxl": 1440px,
+) !default;
+
+$separator: "\\:" !default;
+$gutter: 1rem !default;
