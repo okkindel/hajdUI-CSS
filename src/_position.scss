@@ -1,0 +1,22 @@
+$positions: (
+  "static": "static",
+  "fixed": "fixed",
+  "absolute": "absolute",
+  "relative": "relative",
+  "sticky": "sticky",
+) !default;
+
+@each $key, $val in $positions {
+  .#{$key} {
+    position: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          position: $val;
+        }
+      }
+    }
+  }
+}

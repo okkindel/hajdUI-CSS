@@ -1,0 +1,83 @@
+$widths: (
+  "w-full": 100%,
+  "w-screen": 100vw,
+  "w-auto": auto,
+  "w-1": 8.3333%,
+  "w-2": 16.6667%,
+  "w-3": 25%,
+  "w-4": 33.3333%,
+  "w-5": 41.6667%,
+  "w-6": 50%,
+  "w-7": 58.3333%,
+  "w-8": 66.6667%,
+  "w-9": 75%,
+  "w-10": 83.3333%,
+  "w-11": 91.6667%,
+  "w-12": 100%,
+) !default;
+
+$heights: (
+  "h-full": 100%,
+  "h-screen": 100vh,
+  "h-auto": auto,
+) !default;
+
+$modifies: (
+  "min": min,
+  "max": max,
+) !default;
+
+@each $key, $val in $widths {
+  .#{$key} {
+    width: $val;
+  }
+  @each $mod, $func in $modifies {
+    .#{$mod}#{$separator}#{$key} {
+      #{$func}-width: $val;
+    }
+  }
+
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          width: $val;
+        }
+      }
+      @each $mod, $func in $modifies {
+        .#{$name + $separator} {
+          &#{$mod}#{$separator}#{$key} {
+            #{$func}-width: $val;
+          }
+        }
+      }
+    }
+  }
+}
+
+@each $key, $val in $heights {
+  .#{$key} {
+    height: $val;
+  }
+  @each $mod, $func in $modifies {
+    .#{$mod}#{$separator}#{$key} {
+      #{$func}-height: $val;
+    }
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          height: $val;
+        }
+      }
+      @each $mod, $func in $modifies {
+        .#{$name + $separator} {
+          &#{$mod}#{$separator}#{$key} {
+            #{$func}-height: $val;
+          }
+        }
+      }
+    }
+  }
+}

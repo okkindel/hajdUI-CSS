@@ -1,0 +1,135 @@
+$flex-direction: (
+  "flex-row": row,
+  "flex-row-reverse": row-reverse,
+  "flex-column": column,
+  "flex-column-reverse": column-reverse,
+) !default;
+
+@each $key, $val in $flex-direction {
+  .#{$key} {
+    flex-direction: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          flex-direction: $val;
+        }
+      }
+    }
+  }
+}
+
+$flex-wrap: (
+  "flex-wrap": wrap,
+  "flex-wrap-reverse": wrap-reverse,
+  "flex-nowrap": nowrap,
+) !default;
+
+@each $key, $val in $flex-wrap {
+  .#{$key} {
+    flex-wrap: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          flex-wrap: $val;
+        }
+      }
+    }
+  }
+}
+
+$flex-justify-content: (
+  "justify-start": "flex-start",
+  "justify-end": "flex-end",
+  "justify-center": "center",
+  "justify-between": "space-between",
+  "justify-around": "space-around",
+  "justify-evenly": "space-evenly",
+) !default;
+
+@each $key, $val in $flex-justify-content {
+  .#{$key} {
+    justify-content: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          justify-content: $val;
+        }
+      }
+    }
+  }
+}
+
+$flex-align-content: (
+  "align-content-start": "flex-start",
+  "align-content-end": "flex-end",
+  "align-content-center": "center",
+  "align-content-between": "space-between",
+  "align-content-around": "space-around",
+  "align-content-evenly": "space-evenly",
+) !default;
+
+@each $key, $val in $flex-align-content {
+  .#{$key} {
+    align-content: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          align-content: $val;
+        }
+      }
+    }
+  }
+}
+
+$flex-align-items: (
+  "align-stretch": "stretch",
+  "align-start": "flex-start",
+  "align-center": "center",
+  "align-end": "flex-end",
+  "align-baseline": "baseline",
+) !default;
+
+@each $key, $val in $flex-align-items {
+  .#{$key} {
+    align-items: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          align-items: $val;
+        }
+      }
+    }
+  }
+}
+
+$flex-shorthand: (
+  "flex-1": 1 1 0%,
+  "flex-auto": 1 1 auto,
+  "flex-initial": 0 1 auto,
+  "flex-none": none,
+) !default;
+
+@each $key, $val in $flex-shorthand {
+  .#{$key} {
+    flex: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          flex: $val;
+        }
+      }
+    }
+  }
+}

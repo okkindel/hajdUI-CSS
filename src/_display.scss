@@ -1,0 +1,23 @@
+$displays: (
+  "hidden": "none",
+  "block": "block",
+  "inline": "inline",
+  "inline-block": "inline-block",
+  "flex": "flex",
+  "inline-flex": "inline-flex",
+) !default;
+
+@each $key, $val in $displays {
+  .#{$key} {
+    display: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          display: $val;
+        }
+      }
+    }
+  }
+}

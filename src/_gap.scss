@@ -1,0 +1,35 @@
+$gap-scales: (
+  0: 0rem,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 2rem,
+  6: 3rem,
+  7: 4rem,
+  8: 5rem,
+) !default;
+
+$gap-properties: (
+  "gap": "gap",
+  "row-gap": "row-gap",
+  "column-gap": "column-gap",
+) !default;
+
+@each $key, $val in $gap-properties {
+  @each $scale, $gap in $gap-scales {
+    .#{$key}-#{$scale} {
+      #{$val}: $gap;
+    }
+
+    @each $name, $size in $breakpoints {
+      @media screen and (min-width: #{$size}) {
+        .#{$name + $separator} {
+          &#{$key}-#{$scale} {
+            #{$val}: $gap;
+          }
+        }
+      }
+    }
+  }
+}

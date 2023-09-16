@@ -1,0 +1,26 @@
+$cursors: (
+  "cursor-auto": "auto",
+  "cursor-pointer": "pointer",
+  "cursor-wait": "wait",
+  "cursor-move": "move",
+  "cursor-not-allowed": "not-allowed",
+) !default;
+
+@each $key, $val in $cursors {
+  .#{$key} {
+    cursor: $val;
+  }
+}
+
+$selects: (
+  "select-none": "none",
+  "select-text": "text",
+  "select-all": "all",
+  "select-auto": "auto",
+) !default;
+
+@each $key, $val in $selects {
+  .#{$key} {
+    user-select: $val;
+  }
+}

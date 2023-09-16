@@ -1,0 +1,65 @@
+$overflows: (
+  "overflow-auto": "auto",
+  "overflow-hidden": "hidden",
+  "overflow-visible": "visible",
+  "overflow-scroll": "scroll",
+) !default;
+
+$overflows-x: (
+  "overflow-x-auto": "auto",
+  "overflow-x-hidden": "hidden",
+  "overflow-x-visible": "visible",
+  "overflow-x-scroll": "scroll",
+) !default;
+
+$overflows-y: (
+  "overflow-y-auto": "auto",
+  "overflow-y-hidden": "hidden",
+  "overflow-y-visible": "visible",
+  "overflow-y-scroll": "scroll",
+) !default;
+
+@each $key, $val in $overflows {
+  .#{$key} {
+    overflow: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          overflow: $val;
+        }
+      }
+    }
+  }
+}
+
+@each $key, $val in $overflows-x {
+  .#{$key} {
+    overflow-x: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          overflow-x: $val;
+        }
+      }
+    }
+  }
+}
+
+@each $key, $val in $overflows-y {
+  .#{$key} {
+    overflow-y: $val;
+  }
+  @each $name, $size in $breakpoints {
+    @media screen and (min-width: #{$size}) {
+      .#{$name + $separator} {
+        &#{$key} {
+          overflow-y: $val;
+        }
+      }
+    }
+  }
+}

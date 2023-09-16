@@ -1,5 +1,11 @@
-$intensities: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900);
-$opacities: (10, 20, 30, 40, 50, 60, 70, 80, 90);
+$intensities: (50, 100, 200, 300, 400, 500, 600, 700, 800, 900) !default;
+$modifiers: ("hover", "focus", "active", "disabled") !default;
+$alphas: (10, 20, 30, 40, 50, 60, 70, 80, 90) !default;
+$elements: (
+  "text": "color",
+  "bg": "background-color",
+  "border": "border-color",
+) !default;
 
 @function generate-variants($color, $intensity) {
   @if $intensity < 500 {
@@ -13,41 +19,44 @@ $opacities: (10, 20, 30, 40, 50, 60, 70, 80, 90);
 }
 
 @each $key, $val in $colors {
-  .#{$key} {
-    color: $val;
-  }
-  .hover:#{$key} {
-    &:hover {
-      color: $val;
-    }
-  }
-  .bg-#{$key} {
-    background-color: $val;
-  }
-  @each $i in $intensities {
-    .#{$key}-#{$i} {
-      color: generate-variants($val, $i);
-    }
-    .hover#{$separator}#{$key}-#{$i} {
-      &:hover {
-        color: generate-variants($val, $i);
-      }
-    }
-    .bg-#{$key}-#{$i} {
-      background-color: generate-variants($val, $i);
-    }
-
-    @each $o in $opacities {
-      .#{$key}-#{$i}#{$separator}#{$o} {
-        color: rgba(generate-variants($val, $i), calc($o / 100));
-      }
-      .hover#{$separator}#{$key}-#{$i}#{$separator}#{$o} {
-        &:hover {
-          color: rgba(generate-variants($val, $i), calc($o / 100));
+  @if ($key != "white" and $key != "black") {
+    @each $i in $intensities {
+      @each $e, $property in $elements {
+        .#{$e}-#{$key}-#{$i} {
+          #{$property}: generate-variants($val, $i);
+        }
+        @each $m in $modifiers {
+          .#{$m}#{$separator}#{$e}-#{$key}-#{$i} {
+            &:#{$m} {
+              #{$property}: generate-variants($val, $i);
+            }
+          }
         }
       }
-      .bg-#{$key}-#{$i}#{$separator}#{$o} {
-        background-color: rgba(generate-variants($val, $i), calc($o / 100));
+      @each $a in $alphas {
+        @each $e, $property in $elements {
+          .#{$e}-#{$key}-#{$i}#{$modifier}#{$a} {
+            #{$property}: rgba(generate-variants($val, $i), calc($a / 100));
+          }
+          .hover#{$separator}#{$e}-#{$key}-#{$i}#{$modifier}#{$a} {
+            &:hover {
+              #{$property}: rgba(generate-variants($val, $i), calc($a / 100));
+            }
+          }
+        }
+      }
+    }
+  } @else {
+    @each $e, $property in $elements {
+      .#{$e}-#{$key} {
+        #{$property}: $val;
+      }
+      @each $m in $modifiers {
+        .#{$m}#{$separator}#{$e}-#{$key} {
+          &:#{$m} {
+            #{$property}: $val;
+          }
+        }
       }
     }
   }
