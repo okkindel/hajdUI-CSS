@@ -6,17 +6,22 @@
   "license": "MIT",
   "homepage": "",
   "scripts": {
-    "watch": "gulp watchDev",
-    "build:dev": "gulp buildDev",
-    "build:prod": "gulp buildProd"
+    "watch": "gulp watch",
+    "clean": "postcss --output dist/hajdui.min.css dist/index.css",
+    "build:dev": "gulp build-dev",
+    "build:prod": "gulp build-prod && npm run clean"
   },
   "repository": {
     "type": "git",
     "url": "git+"
   },
   "devDependencies": {
+    "@hail2u/css-mqpacker": "github:hail2u/node-css-mqpacker",
+    "cssnano": "^6.0.1",
     "gulp": "^4.0.2",
     "gulp-sass": "^5.1.0",
+    "postcss": "^8.4.30",
+    "postcss-cli": "^10.1.0",
     "sass": "^1.67.0"
   }
 }
